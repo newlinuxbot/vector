@@ -1,5 +1,5 @@
-#ifndef vector_HPP
-# define vector_HPP
+#ifndef Vector_HPP
+# define Vector_HPP
 
 # include <iostream>
 # include <string>
@@ -10,7 +10,7 @@
 namespace ft
 {
     template <typename T, class Alloc = std::allocator<T> >
-    class vector
+    class Vector
     {
         private:
             T *arr;
@@ -24,7 +24,7 @@ namespace ft
             typedef ft::reverse_iterator<T> reverse_iterator;
             typedef ft::reverse_iterator<const T> const_reverse_iterator;
             typedef unsigned int size_type ;
-            explicit vector ()
+            explicit Vector ()
             {
                 arr = new T[1];
                 mysize = 0;
@@ -32,7 +32,7 @@ namespace ft
                 maxsize = 1073741823;
             }
             
-            explicit vector (int n, const T& val = 0)
+            explicit Vector (int n, const T& val = 0)
             {
                 arr = new T[n];
                 for (int i = 0; i < n; i++)
@@ -42,7 +42,7 @@ namespace ft
                 maxsize = 1073741823;
             }
 
-            vector(const vector<T> &copy)
+            Vector(const Vector<T> &copy)
             {
                 arr = new T[copy.size()];
                 for (int i = 0; i < copy.size() ; i++)
@@ -51,7 +51,7 @@ namespace ft
                 mycapacity = copy.capacity();
             }
 
-            explicit vector (iterator first, iterator last)
+            explicit Vector (iterator first, iterator last)
             {
                 arr = new T[1];
                 mycapacity = 1;
@@ -71,12 +71,12 @@ namespace ft
                 } 
             }
 
-            ~vector()
+            ~Vector()
             {
                delete[]arr;
             }
             
-            vector & operator=(const vector &assign)
+            Vector & operator=(const Vector &assign)
             {
                delete[]arr;
                 arr = new T[assign.size()];
@@ -219,31 +219,31 @@ namespace ft
                     if (mysize == mycapacity)
                     {
                         T *tmp = new T[mycapacity * 2];
-                        for (int i = 0; i < mysize; i++)
+                        for (unsigned int i = 0; i < mysize; i++)
                             tmp[i] = arr[i];
                         delete[]arr;
                         arr = tmp;
                         mycapacity *= 2;
                     }
                     arr[mysize++] = *first;
-                } 
+                }
             }
 
             iterator insert (iterator position, const T& val)
             {
                 
-                int pos = position - arr;
+                unsigned int pos = position - arr;
                 if (mysize + 1 >= mycapacity)
                 {
                     T *tmp = new T[mycapacity * 2];
-                    for (int i = 0; i < mysize; i++)
+                    for (unsigned int i = 0; i < mysize; i++)
                         tmp[i] = arr[i];
                    delete[]arr;
                     arr = tmp;
                     mycapacity *= 2;
                 }
                 T *tmp2 = new T[mycapacity];
-                for (int i = 0, j = 0; i <= mysize;i++)
+                for (unsigned int i = 0, j = 0; i <= mysize;i++)
                 {
                     if (i == pos)
                     {
@@ -259,24 +259,24 @@ namespace ft
                 return begin();
             }
 
-            void insert (iterator position, int n, const T& val)
+            void insert (iterator position, unsigned int n, const T& val)
             {
-                int pos = position - arr;
+                unsigned int pos = position - arr;
                 if (mysize + n >= mycapacity)
                 {
                     T *tmp = new T[mycapacity + n];
-                    for (int i = 0; i < mysize; i++)
+                    for (unsigned int i = 0; i < mysize; i++)
                         tmp[i] = arr[i];
                    delete[]arr;
                     arr = tmp;
                     mycapacity += n;
                 }
                 T *tmp2 = new T[mycapacity];
-                for (int i = 0, j = 0; i <= mysize;i++)
+                for (unsigned int i = 0, j = 0; i <= mysize;i++)
                 {
                     if (i == pos)
                     {
-                        for(int x = 0; x < n; x++)
+                        for(unsigned int x = 0; x < n; x++)
                             tmp2[j++] = val;
                     }
                     tmp2[j++] = arr[i];
@@ -288,18 +288,18 @@ namespace ft
 
             void insert (iterator position, iterator first, iterator last)
             {
-                int pos = position - arr;
+                unsigned int pos = position - arr;
                 if (mysize + last-first >= mycapacity)
                 {
                     T *tmp = new T[mycapacity * 2 + last-first];
-                    for (int i = 0; i < mysize; i++)
+                    for (unsigned int i = 0; i < mysize; i++)
                         tmp[i] = arr[i];
                    delete[]arr;
                     arr = tmp;
                     mycapacity = mycapacity * 2 + last-first;
                 }
                 T *tmp2 = new T[mycapacity];
-                for (int i = 0, j = 0; i <= mysize;i++)
+                for (unsigned int i = 0, j = 0; i <= mysize;i++)
                 {
                     if (i == pos)
                     {
@@ -350,7 +350,7 @@ namespace ft
                 return first;
             }
 
-            void swap (vector& x)
+            void swap (Vector& x)
             {
                 T* tmpArr = arr;
                 int tmpMySize = mysize;
@@ -403,31 +403,31 @@ namespace ft
                 return (first2!=last2);
             }
 
-            bool operator== (const vector<T,Alloc>& rhs)
+            bool operator== (const Vector<T,Alloc>& rhs)
             {
                 if (mysize != rhs.size())
                     return false;
                 return equal(begin(), end(), rhs.begin());
             }
-            bool operator!= (const vector<T,Alloc>& rhs)
+            bool operator!= (const Vector<T,Alloc>& rhs)
             {
                 if (mysize == rhs.size())
                     return false;
                 return !equal(begin(), end(), rhs.begin());
             }
-            bool operator< (const vector<T,Alloc>& rhs)
+            bool operator< (const Vector<T,Alloc>& rhs)
             {
                 return lexicographical_compare(begin(), end(), rhs.begin(), rhs.end());
             }
-            bool operator> (const vector<T,Alloc>& rhs)
+            bool operator> (const Vector<T,Alloc>& rhs)
             {
                 return lexicographical_compare(rhs.begin(), rhs.end(), begin(), end());
             }
-            bool operator<= (const vector<T,Alloc>& rhs)
+            bool operator<= (const Vector<T,Alloc>& rhs)
             {
                 return equal(begin(), end(), rhs.begin()) || !lexicographical_compare(begin(), end(), rhs.begin(), rhs.end());
             }
-             bool operator>= (const vector<T,Alloc>& rhs)
+             bool operator>= (const Vector<T,Alloc>& rhs)
             {
                 return equal(begin(), end(), rhs.begin()) || !lexicographical_compare(rhs.begin(), rhs.end(), begin(), end());
             }
@@ -437,7 +437,7 @@ namespace ft
             }
     };
     template <class T,class Alloc>
-    void swap (ft::vector<T,Alloc>& a, ft::vector<T,Alloc>& b) {
+    void swap (ft::Vector<T,Alloc>& a, ft::Vector<T,Alloc>& b) {
         a.swap(b);
     }
 }
