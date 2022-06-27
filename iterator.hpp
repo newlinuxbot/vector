@@ -89,11 +89,12 @@ namespace ft
                 it._ptr = it._ptr - nb;
                 return (it);
             }
+
+			friend unsigned int operator- (const Iterator& a, const Iterator& b) { return a._ptr - b._ptr; };
+			friend unsigned int operator+ (const Iterator& a, const Iterator& b) { return a._ptr + b._ptr; };
+			friend unsigned int operator/ (const Iterator& a, const Iterator& b) { return a._ptr / b._ptr; };
+			friend unsigned int operator* (const Iterator& a, const Iterator& b) { return a._ptr * b._ptr; };
 			friend bool operator== (const Iterator& a, const Iterator& b) { return a._ptr == b._ptr; };
-			friend bool operator- (const Iterator& a, const Iterator& b) { return a._ptr - b._ptr; };
-			friend bool operator+ (const Iterator& a, const Iterator& b) { return a._ptr + b._ptr; };
-			friend bool operator/ (const Iterator& a, const Iterator& b) { return a._ptr / b._ptr; };
-			friend bool operator* (const Iterator& a, const Iterator& b) { return a._ptr * b._ptr; };
 			friend bool operator!= (const Iterator& a, const Iterator& b) { return a._ptr != b._ptr; };
 			
 			

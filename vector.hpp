@@ -289,14 +289,14 @@ namespace ft
             void insert (iterator position, iterator first, iterator last)
             {
                 unsigned int pos = position - arr;
-                if (mysize + last-first >= mycapacity)
+                if (mysize + (last-first) >= mycapacity)
                 {
-                    T *tmp = new T[mycapacity * 2 + last-first];
+                    T *tmp = new T[mycapacity * 2 + (last-first)];
                     for (unsigned int i = 0; i < mysize; i++)
                         tmp[i] = arr[i];
-                   delete[]arr;
+                    delete[]arr;
                     arr = tmp;
-                    mycapacity = mycapacity * 2 + last-first;
+                    mycapacity = (mycapacity * 2) + (last-first);
                 }
                 T *tmp2 = new T[mycapacity];
                 for (unsigned int i = 0, j = 0; i <= mysize;i++)
@@ -313,15 +313,15 @@ namespace ft
                 }
                 delete[]arr;
                 arr = tmp2;
-                mysize += last-first;
+                mysize += (last-first);
             }
            
             
             iterator erase (iterator position)
             {
-                int pos = position - arr;
+                unsigned int pos = position - arr;
                 T *tmp = new T[mycapacity];
-                for (int i = 0, j = 0; i <= mysize;i++)
+                for (unsigned int i = 0, j = 0; i <= mysize;i++)
                 {
                     if (i == pos)
                         continue;
@@ -335,10 +335,10 @@ namespace ft
             
             iterator erase (iterator first, iterator last)
             {
-                int firstpos = first - arr;
-                int lastpos = last - arr;
+                unsigned int firstpos = first - arr;
+                unsigned int lastpos = last - arr;
                 T *tmp = new T[mycapacity];
-                for (int i = 0,j = 0; i < mysize;i++)
+                for (unsigned int i = 0,j = 0; i < mysize;i++)
                 {
                     if (i == firstpos)
                         i += lastpos - firstpos;

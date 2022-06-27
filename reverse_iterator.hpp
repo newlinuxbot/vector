@@ -56,11 +56,11 @@ namespace ft
             }
 
 			friend bool operator== (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr == b._ptr; };
-            friend bool operator- (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr - b._ptr; };
-			friend bool operator+ (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr + b._ptr; };
-			friend bool operator/ (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr / b._ptr; };
-			friend bool operator* (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr * b._ptr; };
 			friend bool operator!= (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr != b._ptr; };
+			friend unsigned int operator- (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr - b._ptr; };
+			friend unsigned int operator+ (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr + b._ptr; };
+			friend unsigned int operator/ (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr / b._ptr; };
+			friend unsigned int operator* (const reverse_iterator& a, const reverse_iterator& b) { return a._ptr * b._ptr; };
 			
             
 		private:
